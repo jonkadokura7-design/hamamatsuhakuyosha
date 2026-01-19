@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム | 浜松白洋舎グループ</title>
+    <!-- Google Fonts for Yu Gothic / Noto Sans JP fallback if needed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base variables */
+        :root {
+            --primary-blue: #1e50a2;
+            /* Based on inspection */
+            --secondary-blue: #4a90e2;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --font-main: 'Noto Sans JP', "Yu Gothic", "Meiryo", sans-serif;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        .site-header {
+            width: 100%;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-top {
+            padding: 15px 0;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-info {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-info .tel {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .contact-info .office {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-buttons a {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn-shop {
+            background-color: #fff;
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-contact {
+            background-color: #f39c12;
+            /* Accent color placeholder */
+            color: #fff;
+            border: 1px solid #e67e22;
+        }
+
+        /* Navigation */
+        .main-navigation {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .main-navigation ul {
+            display: flex;
+        }
+
+        .main-navigation li {
+            flex: 1;
+            text-align: center;
+        }
+
+        .main-navigation a {
+            display: block;
+            padding: 15px 0;
+            font-weight: bold;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .main-navigation li:first-child a {
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            height: 500px;
+            /* Taller hero */
+            overflow: hidden;
+            background-color: #f4f4f4;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .slide-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .slide-content p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            z-index: 2;
+            font-size: 24px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicator.active {
+            background-color: var(--primary-blue);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        /* Store Search Section */
+        .store-search-section {
+            background-color: var(--white);
+        }
+
+        .search-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .search-box {
+            flex: 1;
+            background-color: #f0f0f0;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .search-box h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--secondary-blue);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .area-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .area-list li {
+            width: calc(33.333% - 10px);
+        }
+
+        .area-list a {
+            display: block;
+            background-color: var(--white);
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            color: var(--text-main);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .area-list a:hover {
+            background-color: var(--secondary-blue);
+            color: white;
+        }
+
+        /* Item Categories Section */
+        .items-section {
+            background-color: var(--bg-light);
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .item-card {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Background Color Placeholders for Items */
+        .bg-basic {
+            background-color: #81c784;
+        }
+
+        .bg-business {
+            background-color: #64b5f6;
+        }
+
+        .bg-outer {
+            background-color: #e57373;
+        }
+
+        .bg-formal {
+            background-color: #ba68c8;
+        }
+
+        .bg-interior {
+            background-color: #ffb74d;
+        }
+
+        .bg-shoes {
+            background-color: #4db6ac;
+        }
+
+        /* Options Section */
+        .options-section {
+            background-color: var(--white);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .option-card {
+            text-align: center;
+            padding: 30px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: box-shadow 0.3s;
+        }
+
+        .option-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .option-card p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* News Section */
+        .news-section {
+            background-color: var(--bg-light);
+        }
+
+        .news-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .news-list li {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+        .news-list li:last-child {
+            border-bottom: none;
+        }
+
+        .news-list .date {
+            width: 100px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .news-list .category {
+            background-color: var(--secondary-blue);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 20px;
+            width: 100px;
+            text-align: center;
+        }
+
+        .news-list a {
+            flex: 1;
+            color: var(--text-main);
+        }
+
+        .news-list a:hover {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+
+        .side-banners {
+            display: flex;
+            gap: 30px;
+        }
+
+        .banner-box {
+            flex: 1;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .banner-box:hover {
+            opacity: 0.8;
+        }
+
+        .banner-box h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #333;
+            color: #fff;
+            padding: 60px 0 20px;
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .footer-tel {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: white;
+        }
+
+        .footer-social a {
+            display: inline-block;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .footer-sitemap {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sitemap-col {
+            flex: 1;
+        }
+
+        .sitemap-col h4 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--secondary-blue);
+            padding-left: 10px;
+        }
+
+        .sitemap-col ul {
+            font-size: 14px;
+        }
+
+        .sitemap-col li {
+            margin-bottom: 10px;
+        }
+
+        .sitemap-col a {
+            color: #ccc;
+        }
+
+        .sitemap-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        /* Mobile Menu Button */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger-menu span {
+            width: 30px;
+            height: 3px;
+            background: var(--primary-blue);
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        /* Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .menu-overlay.open {
+            display: block;
+        }
+
+        /* Hamburger Animation */
+        .hamburger-menu.open span:first-child {
+            transform: rotate(45deg);
+        }
+
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .hamburger-menu.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-top .container {
+                flex-direction: row;
+                /* Keep row for logo and burger */
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                flex: 1;
+            }
+
+            .header-contact {
+                order: 2;
+            }
+
+            .contact-info {
+                display: none;
+                /* Hide phone number text on mobile */
+            }
+
+            .header-buttons {
+                gap: 5px;
+                align-items: center;
+            }
+
+            .btn-shop,
+            .btn-contact {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .hamburger-menu {
+                display: flex;
+                margin-left: 10px;
+            }
+
+            .main-navigation {
+                display: block;
+                /* Override none */
+                position: fixed;
+                top: 0;
+                right: -100%;
+                /* Hide off-screen */
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--white);
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease-in-out;
+                z-index: 1000;
+                padding-top: 60px;
+            }
+
+            .main-navigation.open {
+                right: 0;
+            }
+
+            .main-navigation ul {
+                flex-direction: column;
+            }
+
+            .main-navigation a {
+                color: var(--text-main);
+                border-right: none;
+                border-bottom: 1px solid #eee;
+                padding: 15px 20px;
+                text-align: left;
+            }
+
+            .main-navigation li:first-child a {
+                border-left: none;
+            }
+
+            .items-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-options,
+            .side-banners,
+            .footer-sitemap {
+                flex-direction: column;
+            }
+
+            .news-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .news-list .category {
+                margin: 5px 0;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .sitemap-col {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-top">
+            <div class="container">
+                <h1 class="logo">
+                    <a href="#">
+                        浜松白洋舎グループ
+                        <!-- Placeholder for logo image -->
+                        <!-- <img src="images/logo.png" alt="浜松白洋舎グループ"> -->
+                    </a>
+                </h1>
+                <div class="header-contact">
+                    <div class="contact-info">
+                        <span class="tel">053-422-8787</span>
+                        <span class="office">Head Office</span>
+                    </div>
+                    <div class="header-buttons">
+                        <a href="#" class="btn-shop">店舗情報</a>
+                        <a href="#" class="btn-contact">お問い合わせ</a>
+                        <button class="hamburger-menu" aria-label="Menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-navigation" id="mainNav">
+            <div class="container">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">クリーニング品目</a></li>
+                    <li><a href="#">浜白のこだわり</a></li>
+                    <li><a href="#">料金表</a></li>
+                    <li><a href="#">店舗・求人情報</a></li>
+                    <li><a href="#">会社概要</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Slider -->
+        <section class="hero-slider">
+            <div class="slider-wrapper">
+                <!-- Slides -->
+                <div class="slide active">
+                    <div class="slide-content" style="background-color: #e0f7fa;">
+                        <div class="container">
+                            <h2>2025年 新春キャンペーン</h2>
+                            <p>新たな気持ちで、真っ白な服を。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content" style="background-color: #ffe0b2;">
+                        <div class="container">
+                            <h2>スニーカークリーニング</h2>
+                            <p>プロの技で、足元から美しく。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content" style="background-color: #e1bee7;">
+                        <div class="container">
+                            <h2>お得な会員サービス</h2>
+                            <p>入会金・年会費無料！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <button class="slider-btn prev-btn">&#10094;</button>
+            <button class="slider-btn next-btn">&#10095;</button>
+            <!-- Indicators -->
+            <div class="slider-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+            </div>
+        </section>
+
+        <!-- Store Search -->
+        <section class="store-search-section">
+            <div class="container">
+                <h2 class="section-title">お近くの店舗を探す</h2>
+                <div class="search-options">
+                    <div class="search-box">
+                        <h3>地図から探す</h3>
+                        <div class="map-placeholder">
+                            <p>[ MAP INTERFACE ]</p>
+                        </div>
+                    </div>
+                    <div class="search-box">
+                        <h3>エリア一覧から探す</h3>
+                        <ul class="area-list">
+                            <li><a href="#">中区</a></li>
+                            <li><a href="#">東区</a></li>
+                            <li><a href="#">西区</a></li>
+                            <li><a href="#">南区</a></li>
+                            <li><a href="#">北区</a></li>
+                            <li><a href="#">浜北区</a></li>
+                            <li><a href="#">天竜区</a></li>
+                            <li><a href="#">磐田市</a></li>
+                            <li><a href="#">袋井市</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Item Categories -->
+        <section class="items-section">
+            <div class="container">
+                <h2 class="section-title">クリーニング品目</h2>
+                <div class="items-grid">
+                    <a href="#" class="item-card bg-basic">
+                        <span>一般衣類</span>
+                    </a>
+                    <a href="#" class="item-card bg-business">
+                        <span>カッター・ビジネス</span>
+                    </a>
+                    <a href="#" class="item-card bg-outer">
+                        <span>アウター</span>
+                    </a>
+                    <a href="#" class="item-card bg-formal">
+                        <span>フォーマル</span>
+                    </a>
+                    <a href="#" class="item-card bg-interior">
+                        <span>インテリア・寝具</span>
+                    </a>
+                    <a href="#" class="item-card bg-shoes">
+                        <span>スニーカー・靴</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Options & Processing -->
+        <section class="options-section">
+            <div class="container">
+                <h2 class="section-title">オプション・加工</h2>
+                <div class="options-grid">
+                    <a href="#" class="option-card">
+                        <div class="option-icon" style="font-size: 40px; margin-bottom: 10px;">💧</div>
+                        <h3>しみぬき</h3>
+                        <p>あきらめていたシミもご相談ください</p>
+                    </a>
+                    <a href="#" class="option-card">
+                        <div class="option-icon" style="font-size: 40px; margin-bottom: 10px;">🛡️</div>
+                        <h3>撥水加工</h3>
+                        <p>雨や汚れをはじく強力ガード</p>
+                    </a>
+                    <a href="#" class="option-card">
+                        <div class="option-icon" style="font-size: 40px; margin-bottom: 10px;">✨</div>
+                        <h3>折目加工</h3>
+                        <p>パンツの折り目をピシッとキープ</p>
+                    </a>
+                    <a href="#" class="option-card">
+                        <div class="option-icon" style="font-size: 40px; margin-bottom: 10px;">🧵</div>
+                        <h3>リフォーム</h3>
+                        <p>寸法直し・破れ修理など</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- News / Blog -->
+        <section class="news-section">
+            <div class="container">
+                <div class="news-container">
+                    <h2 class="section-title">最新情報・お知らせ</h2>
+                    <ul class="news-list">
+                        <li>
+                            <span class="date">2025.01.15</span>
+                            <span class="category">お知らせ</span>
+                            <a href="#">2025年 新春キャンペーンのお知らせ</a>
+                        </li>
+                        <li>
+                            <span class="date">2024.12.28</span>
+                            <span class="category">営業案内</span>
+                            <a href="#">年末年始の営業時間について</a>
+                        </li>
+                        <li>
+                            <span class="date">2024.11.30</span>
+                            <span class="category">キャンペーン</span>
+                            <a href="#">冬の衣類まとめ出しセール開催中</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="side-banners">
+                    <a href="#" class="banner-box" style="background-color: #e3f2fd;">
+                        <h3>浜松ライフ</h3>
+                        <p>地域のイベント・文化情報発信</p>
+                    </a>
+                    <a href="#" class="banner-box" style="background-color: #e8f5e9;">
+                        <h3>SDGsへの取り組み</h3>
+                        <p>環境にやさしいクリーニング</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <h2>浜松白洋舎グループ</h2>
+                    <p>〒435-0042 静岡県浜松市東区篠ケ瀬町1247-1</p>
+                    <p class="footer-tel">TEL: 053-422-8787</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                </div>
+            </div>
+
+            <div class="footer-sitemap">
+                <div class="sitemap-col">
+                    <h4>ホーム</h4>
+                    <ul>
+                        <li><a href="#">新着情報</a></li>
+                    </ul>
+                </div>
+                <div class="sitemap-col">
+                    <h4>クリーニング品目</h4>
+                    <ul>
+                        <li><a href="#">一般衣類</a></li>
+                        <li><a href="#">カッター・ビジネス</a></li>
+                        <li><a href="#">アウター</a></li>
+                        <li><a href="#">フォーマル</a></li>
+                        <li><a href="#">スニーカー・靴</a></li>
+                    </ul>
+                </div>
+                <div class="sitemap-col">
+                    <h4>サービス・加工</h4>
+                    <ul>
+                        <li><a href="#">しみぬき</a></li>
+                        <li><a href="#">撥水加工</a></li>
+                        <li><a href="#">折目加工</a></li>
+                        <li><a href="#">リフォーム</a></li>
+                    </ul>
+                </div>
+                <div class="sitemap-col">
+                    <h4>その他</h4>
+                    <ul>
+                        <li><a href="#">店舗検索</a></li>
+                        <li><a href="#">料金表</a></li>
+                        <li><a href="#">会社概要</a></li>
+                        <li><a href="#">求人情報</a></li>
+                        <li><a href="#">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; HAMAMATSU HAKUYOSHA CLEANING. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        console.log('Hamamatsu Hakuyosha replica script loaded.');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Hero Slider Logic ---
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const indicators = document.querySelectorAll('.indicator');
+
+            let currentSlide = 0;
+            const slideInterval = 5000; // 5 seconds
+            let autoPlay;
+
+            function showSlide(index) {
+                // Wrap around
+                if (index >= slides.length) currentSlide = 0;
+                else if (index < 0) currentSlide = slides.length - 1;
+                else currentSlide = index;
+
+                // Remove active class from all
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(ind => ind.classList.remove('active'));
+
+                // Add active class to current
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            function startAutoPlay() {
+                autoPlay = setInterval(nextSlide, slideInterval);
+            }
+
+            function resetAutoPlay() {
+                clearInterval(autoPlay);
+                startAutoPlay();
+            }
+
+            // Event Listeners
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetAutoPlay();
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetAutoPlay();
+                });
+            }
+
+            indicators.forEach((ind, index) => {
+                ind.addEventListener('click', () => {
+                    showSlide(index);
+                    resetAutoPlay();
+                });
+            });
+
+            // Initialize
+            startAutoPlay();
+
+            // --- Mobile Menu Logic ---
+            const hamburger = document.querySelector('.hamburger-menu');
+            const mainNav = document.getElementById('mainNav');
+
+            // Create overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'menu-overlay';
+            document.body.appendChild(overlay);
+
+            function toggleMenu() {
+                hamburger.classList.toggle('open');
+                mainNav.classList.toggle('open');
+                overlay.classList.toggle('open');
+                document.body.classList.toggle('no-scroll');
+            }
+
+            if (hamburger) {
+                hamburger.addEventListener('click', toggleMenu);
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', toggleMenu);
+            }
+
+            // Close menu when clicking links
+            const navLinks = mainNav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('open')) {
+                        toggleMenu();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
